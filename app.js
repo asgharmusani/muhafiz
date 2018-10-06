@@ -41,6 +41,10 @@ port.on("open", function() {
 	});
 });
 
+
+app.use(require("./routes/auth"));
+app.use(require("./routes/dashboard"));
+
 app.set("port", process.env.PORT || 3100);
 
 server.listen(app.get("port"), function() {
