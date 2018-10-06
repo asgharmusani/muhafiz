@@ -1,8 +1,12 @@
 
 var serialport = require("serialport"),
-		bodyParser = require("body-parser"),
-
-
+    express = require("express"),
+    app = express(),
+    Handlebars = require("handlebars"),
+    exphbs = require("express-handlebars"),
+    server = require("http").createServer(app),
+    path = require("path"),
+	bodyParser = require("body-parser");
 
 //app environment
 app.set("views", path.join(__dirname, "views"));
@@ -25,9 +29,6 @@ app.use(
 );
 
 
-
-
-
 var port = new serialport("COM7", {
   baudRate: 9600,
   parser: new serialport.parsers.Readline("\n")
@@ -40,3 +41,8 @@ port.on("open", function() {
 	});
 });
 
+app.set("port", process.env.PORT || 3100);
+
+server.listen(app.get("port"), function() {
+    console.log("Server working working at port", app.get("port"));
+});
