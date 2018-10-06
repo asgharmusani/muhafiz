@@ -1,0 +1,27 @@
+{
+  "name": "muhafiz",
+  "version": "1.0.0",
+  "description": "Muhafiz is an embedded tactical suit that provides health analytics and individual data of a soldier remotely",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asgharmusani/muhafiz.git"
+  },
+  "author": "Asghar Musani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/asgharmusani/muhafiz/issues"
+  },
+  "homepage": "https://github.com/asgharmusani/muhafiz#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "serialport": "^7.0.2",
+    "socket.io": "^2.1.1"
+  }
+}
