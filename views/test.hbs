@@ -1,0 +1,39 @@
+<div>ACC-X: <b><label id="acc_x"></label></b></div>
+<div>ACC-Y: <b><label id="acc_y"></label></b></div>
+<div>ACC-Z: <b><label id="acc_z"></label></b></div>
+<div>Alt: <b><label id="alt"></label></b></div>
+<div>Heart Beat: <b><label id="hb"></label></b></div>
+<div>GPS 
+    <ul>Latitude: <b><label id="gpsLat"></label></b></ul>
+    <ul>Longitude: <b><label id="gpsLong"></label></b></ul>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+  <script>
+      //let tagTest = document.getElementById("tagTest").innerHTML;
+      $(function(){
+          var socket = io('http://localhost:3100/somedata');
+          socket.on('arduino', function(receivedData){
+            if (typeof receivedData["ACC-X"] != "undefined")
+                document.getElementById("acc_x").innerHTML = receivedData["ACC-X"];
+            if (typeof receivedData["ACC-Y"] != "undefined")
+                document.getElementById("acc_y").innerHTML = receivedData["ACC-Y"];
+            if (typeof receivedData["ACC-Z"] != "undefined")
+                document.getElementById("acc_z").innerHTML = receivedData["ACC-Z"];
+            if (typeof receivedData["Alt"] != "undefined")
+                document.getElementById("alt").innerHTML = receivedData["Alt"];
+            if (typeof receivedData["HeartBeat"] != "undefined")
+                document.getElementById("hb").innerHTML = receivedData["HeartBeat"];
+            if (typeof receivedData["GPS"] != "undefined"){
+                document.getElementById("gpsLat").innerHTML = receivedData["GPS"].lat; 
+                document.getElementById("gpsLong").innerHTML = receivedData["GPS"].long;  
+            }
+                
+          });
+      })
+  </script>

@@ -1,8 +1,4 @@
-
-var serialport = require("serialport"),
-    SerialPort = serialport.SerialPort, // localize object constructor
-    portName = 'COM3',
-    express = require("express"),
+var express = require("express"),
     app = express(),
     Handlebars = require("handlebars"),
     exphbs = require("express-handlebars"),
@@ -31,51 +27,10 @@ app.use(
     }),
 );
 
-
-var 
-
-var connectArd = function() {
-    var sp = new SerialPort(portName, {
-        parser: serialport.parsers.readline("\r\n"),
-        //parser: serialport.parsers.raw,
-        baudrate: 9600,
-        // defaults for Arduino serial communication
-        dataBits: 8,
-        parity: 'none',
-        stopBits: 1,
-        flowControl: false
-    });
-
-
-    sp.on("open", function() {
-        console.log('Serial Port ' + portName + ' Opened');
-        sp.on('data', function(data) {
-            console.log(data.toString());
-            io.emit('arduino', data);
-        });
-    });
-
-    sp.on('close', function(){
-        console.log('ARDUINO PORT CLOSED, waiting 9 sec before retry');
-        setTimeout(
-            function() {
-                //process.exit();
-                reconnectArd();
-            }, 9000);
-    });
-
-    sp.on('error', function (err) {
-        console.error("sp error: ", err, "Waiting 9 sec before restarting");
-        setTimeout(
-            function() {
-                //process.exit();
-                reconnectArd();
-            }, 9000);
-    });
-}
-
 app.use(require("./routes/auth"));
 app.use(require("./routes/dashboard"));
+require("./routes/socket.js")(io);
+
 
 app.set("port", process.env.PORT || 3100);
 
