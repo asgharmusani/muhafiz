@@ -1,7 +1,7 @@
 
 var SerialPort = require("serialport"),
     Readline = require('@serialport/parser-readline'),
-    portName = 'COM3';
+    portName = 'COM6';
 
 module.exports = function(io) {
 
