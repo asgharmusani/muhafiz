@@ -1,6 +1,6 @@
 var SerialPort = require("serialport"),
     Readline = require("@serialport/parser-readline"),
-    portName = "COM3";
+    portName = "COM5";
 
 module.exports = function(io) {
     var somedataNSP = io.of("/somedata");
@@ -19,18 +19,28 @@ module.exports = function(io) {
         sp.on("open", function() {
             console.log("Serial Port " + portName + " Opened");
             parser.on("data", function(data) {
-                let ardData = data.split(":");
-                let jsonData = {};
-                if (ardData[0] === "GPS") {
-                    let gps = ardData[1].split(",");
-                    jsonData = {
-                        GPS: {
-                            lat: gps[0],
-                            long: gps[1],
-                        },
-                    };
-                } else jsonData[ardData[0]] = ardData[1];
-                somedataNSP.emit("arduino", jsonData);
+                let ardData = data.split("/");
+                if(typeof ardData[1] != "undefined"){
+                    let idAndVal = ardData[1].split(":");
+                    // console.log(ardData);
+                    let jsonData = {};
+                    if (ardData[0] === "GPS") {
+                        let gps = idAndVal[1].split(",");
+                        jsonData = {
+                            id: idAndVal[0],
+                            gps: {
+                                lat: gps[0],
+                                long: gps[1],
+                            },
+                        };
+                    } else {
+                        jsonData["id"] = idAndVal[0];
+                        jsonData[ardData[0]] = idAndVal[1];
+                    }
+                    console.log(jsonData);
+                    somedataNSP.emit("arduino", jsonData);
+                }
+                
             });
         });
 
