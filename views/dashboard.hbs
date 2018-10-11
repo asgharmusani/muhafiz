@@ -10,7 +10,7 @@
 <div id="content">
 <!--breadcrumbs-->
   <div id="content-header">
-    <div id="breadcrumb"> <a href="dashboard.hbs" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a></div>
+    <div id="breadcrumb"  class=" py-2"> <a href="/dashboard" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a></div>
   </div>
 <!--End-breadcrumbs-->
 
@@ -30,77 +30,140 @@
           <h5>Dashboard</h5>
         </div>
 <!--Chart-box-->
-<body>
 
+<div class="row">
 
-   <div id="map"></div>
-            <div class="span6">
-        <div class="widget-box widget-chat">
-          <div class="widget-title bg_lb"> <span class="icon"> <i class="icon-comment"></i> </span>
-            <h5>Chat Option</h5>
-          </div>
-          <div class="widget-content nopadding collapse in" id="collapseG4">
-            <div class="chat-users panel-right2">
-              <div class="panel-title">
-                <h5>Online Users</h5>
-              </div>
-              <div class="panel-content nopadding">
-                <ul class="contact-list">
-                  <li id="user-John" class="online new"><a href=""><img alt="" src="img/demo/av3.jpg" /> <span>Soldier 1</span></a><span class="msg-count badge badge-info">3</span></li>
-                  <li id="user-Alex" class="online"><a href=""><img alt="" src="img/demo/av1.jpg" /> <span>Soldier 2</span></a></li>
-                  <li id="user-Linda"><a href=""><img alt="" src="img/demo/av2.jpg" /> <span>Soldier 3</span></a></li>
-                  <li id="user-Mark" class="online"><a href=""><img alt="" src="img/demo/av4.jpg" /> <span>Soldier 4</span></a></li>
-                  <li id="user-Maxi" class="online"><a href=""><img alt="" src="img/demo/av5.jpg" /> <span>Soldier 5</span></a></li>
-                </ul>
-              </div>
+<div class=" col-sm-6 px-0" >
+  <div class="card mt-4">
+    <div class="card-header font-weight-bold float-left">
+      Online Soldiers
+    </div>
+    <div class="card-body pt-1">
+      <ul class="recent-posts">
+        <li>
+          <div class="user-thumb"> <img width="40" height="40" alt="User" src="img/demo/av1.jpg"> </div>
+          <div class="article-post"> <span class="user-info">Soldier 1</span> 
+          <span class="small pl-5" style="color:green;">Online</span>
+          {{!-- <span class="small pl-5" style="color:red;">Offline</span> --}}
+            <div class="px-5">
+              <span>1</span>
+              <span>2</span>
+              <span>3</span>
             </div>
-            <div class="chat-content panel-left2">
-              <div class="chat-messages" id="chat-messages">
-                <div id="chat-messages-inner"></div>
-                 <div class="span3" style="float:right;
+          </div>
+        </li>
+        <li>
+          <div class="user-thumb"> <img width="40" height="40" alt="User" src="img/demo/av2.jpg"> </div>
+          <div class="article-post"> <span class="user-info">Soldier 2</span>
+          <span class="small pl-5" style="color:green;">Online</span>
+          {{!-- <span class="small pl-5" style="color:red;">Offline</span> --}}
+            <div class="px-5">
+              <span>1</span>
+              <span>2</span>
+              <span>3</span>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="user-thumb"> <img width="40" height="40" alt="User" src="img/demo/av2.jpg"> </div>
+          <div class="article-post"> <span class="user-info">Soldier 3</span>
+          <span class="small pl-5" style="color:red;">Offline</span>
+            
+            <p>No data Available</p>
+          </div>
+        </li>
+        <li>
+          <div class="user-thumb"> <img width="40" height="40" alt="User" src="img/demo/av2.jpg"> </div>
+          <div class="article-post"> <span class="user-info">Soldier 4</span>
+          <span class="small pl-5" style="color:red;">Offline</span>
+          
+            <p>No data Available</p>
+          </div>
+        </li>
+        <li>
+          <div class="user-thumb"> <img width="40" height="40" alt="User" src="img/demo/av2.jpg"> </div>
+          <div class="article-post"> <span class="user-info">Soldier 5</span>
+          <span class="small pl-5" style="color:red;">Offline</span>
+            
+            <p>No data Available</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class=" col-sm-6"><div id="map"></div></div>
+  </div>
+
+
+<div class="span6">
+  <div class="widget-box widget-chat">
+    {{!-- <div class="widget-title bg_lb"> <span class="icon"> <i class="icon-comment"></i> </span>
+      <h5>Chat Option</h5>
+    </div> --}}
+    <div class="widget-content nopadding collapse in" id="collapseG4">
+      <div class="chat-users panel-right2">
+        <div class="panel-title">
+          <h5>Online Users</h5>
+        </div>
+        <div class="panel-content nopadding">
+          <ul class="contact-list">
+            <li id="user-John" class="online new"><a href=""><img alt="" src="img/demo/av3.jpg" /> <span>Soldier 1</span></a><span
+                class="msg-count badge badge-info">3</span></li>
+            <li id="user-Alex" class="online"><a href=""><img alt="" src="img/demo/av1.jpg" /> <span>Soldier 2</span></a></li>
+            <li id="user-Linda"><a href=""><img alt="" src="img/demo/av2.jpg" /> <span>Soldier 3</span></a></li>
+            <li id="user-Mark" class="online"><a href=""><img alt="" src="img/demo/av4.jpg" /> <span>Soldier 4</span></a></li>
+            <li id="user-Maxi" class="online"><a href=""><img alt="" src="img/demo/av5.jpg" /> <span>Soldier 5</span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="chat-content panel-left2">
+        <div class="chat-messages" id="chat-messages">
+          <div id="chat-messages-inner"></div>
+          <div class="span3" style="float:right;
     width:50%;
     height:100px;">
-              <ul class="site-stats">
-                <li class="bg_lh"><i class="icon-user" id="hb"></i> <strong></strong> <small>HEART BEAT</small></li>  
-              </ul>
-            </div>
-              </div>
-              
-            </div>
-          </div>
-        </div>
-        <div class="widget-box">
-        <div class="widget-title"><span class="icon"><i class="icon-dashboard"></i></span>
-            <h5>Activity Base Graph</h5>
-            </div>
-            <div class="widget-content">
-            <div class="ct-chart ct-perfect-fourth"></div>
-          </div>
-          </div>
-        
-        <div class="widget-box">
-          <div class="widget-title"><span class="icon"><i class="icon-user"></i></span>
-            <h5>Message Box</h5>
-          </div>
-          <div class="widget-content nopadding fix_hgt">
-            <ul class="recent-posts">
-              <li>
-                <div class="user-thumb"> <img width="40" height="40" alt="User" src="img/demo/av1.jpg"> </div>
-                <div class="article-post"> <span class="user-info">Soldier 1</span>
-                  <p>Soldier 1 has elevated hear rate</p>
-                </div>
-              </li>
-              <li>
-                <div class="user-thumb"> <img width="40" height="40" alt="User" src="img/demo/av2.jpg"> </div>
-                <div class="article-post"> <span class="user-info">Soldier 2</span>
-                  <p>Soldier 2 has gone offline</p>
-                </div>
-              </li>
+            <ul class="site-stats">
+              <li class="bg_lh"><i class="icon-user" id="hb"></i> <strong></strong> <small>HEART BEAT</small></li>
             </ul>
           </div>
         </div>
-      
+
+      </div>
+    </div>
+  </div>
+  <div class="widget-box">
+    <div class="widget-title"><span class="icon"><i class="icon-dashboard"></i></span>
+      <h5>Activity Base Graph</h5>
+    </div>
+    <div class="widget-content">
+      <div class="ct-chart ct-perfect-fourth"></div>
+    </div>
+  </div>
+
+  {{!-- <div class="widget-box">
+    <div class="widget-title"><span class="icon"><i class="icon-user"></i></span>
+      <h5>Message Box</h5>
+    </div>
+    <div class="widget-content nopadding fix_hgt">
+      <ul class="recent-posts">
+        <li>
+          <div class="user-thumb"> <img width="40" height="40" alt="User" src="img/demo/av1.jpg"> </div>
+          <div class="article-post"> <span class="user-info">Soldier 1</span>
+            <p>Soldier 1 has elevated hear rate</p>
           </div>
+        </li>
+        <li>
+          <div class="user-thumb"> <img width="40" height="40" alt="User" src="img/demo/av2.jpg"> </div>
+          <div class="article-post"> <span class="user-info">Soldier 2</span>
+            <p>Soldier 2 has gone offline</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div> --}}
+
+</div>
           
      
 <script>
@@ -120,10 +183,10 @@ var mychart = new Chartist.Line('.ct-chart');
       #map {
         position: relative;
         float: right;
-    width: 47%;
-    height: 542px;
-    background-color: #CCC;
-    margin: 1% 1% 0 0%;
+        width: 100%;
+        height: 600px;
+        background-color: #CCC;
+    {{!-- margin: 1% 1% 0 0%; --}}
       }
       /* Optional: Makes the sample page fill the window. */
       html, body {

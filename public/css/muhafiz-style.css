@@ -75,7 +75,7 @@ hr{ border-top-color:#dadada;}
 #search input[type=text] {
 	padding: 4px 10px 5px;
 	border: 0;
-	width: 100px;
+	width: 250px;
 }
 #search button {
 	border: 0;
@@ -246,7 +246,7 @@ hr{ border-top-color:#dadada;}
 	background-image: url('../img/breadcrumb.png');
 	background-position: center right;
 	background-repeat: no-repeat;
-	font-size: 11px;
+	font-size: 14px;
 	color: #666666;
 }
 #breadcrumb a:hover {
@@ -519,6 +519,7 @@ hr{ border-top-color:#dadada;}
 	margin-top: 16px;
 	margin-bottom: 16px;
 	position: relative;
+	font-size: 14px;
 }
 .widget-box.widget-calendar, .widget-box.widget-chat {
 	overflow:hidden !important;
@@ -639,7 +640,8 @@ hr{ border-top-color:#dadada;}
 }
 .user-info {
 	color: #666666;
-	font-size: 11px;
+	font-size: 13px;
+	font-weight: bold;
 }
 
 .invoice-content {
