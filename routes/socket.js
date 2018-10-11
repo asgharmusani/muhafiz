@@ -21,24 +21,26 @@ module.exports = function(io) {
             parser.on("data", function(data) {
                 let ardData = data.split("/");
                 if(typeof ardData[1] != "undefined"){
-                    let idAndVal = ardData[1].split(":");
-                    // console.log(ardData);
-                    let jsonData = {};
-                    if (ardData[0] === "GPS") {
-                        let gps = idAndVal[1].split(",");
-                        jsonData = {
-                            id: idAndVal[0],
-                            gps: {
-                                lat: gps[0],
-                                long: gps[1],
-                            },
-                        };
-                    } else {
-                        jsonData["id"] = idAndVal[0];
-                        jsonData[ardData[0]] = idAndVal[1];
+                    if (ardData[1].includes(':')){
+                        let idAndVal = ardData[1].split(":");
+                        // console.log(ardData);
+                        let jsonData = {};
+                        if (ardData[0] === "GPS") {
+                            let gps = idAndVal[1].split(",");
+                            jsonData = {
+                                id: idAndVal[0],
+                                gps: {
+                                    lat: gps[0],
+                                    long: gps[1],
+                                },
+                            };
+                        } else {
+                            jsonData["id"] = idAndVal[0];
+                            jsonData[ardData[0]] = idAndVal[1];
+                        }
+                        console.log(jsonData);
+                        somedataNSP.emit("arduino", jsonData);
                     }
-                    console.log(jsonData);
-                    somedataNSP.emit("arduino", jsonData);
                 }
                 
             });
