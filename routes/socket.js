@@ -34,11 +34,17 @@ module.exports = function(io) {
                                     long: gps[1],
                                 },
                             };
-                        } else if (ardData[0] === "Impact") {
-                            console.log("Value for impact is", idAndVal[1], typeof idAndVal[1]);
+                        } else if (ardData[0] === "Touch1") {
+                            console.log("Value for impact1 is", idAndVal[1], typeof idAndVal[1]);
                             jsonData = {
                                 id: idAndVal[0],
-                                impact: idAndVal[1] < 10 ? true : false,
+                                impact1: idAndVal[1] < 10 ? true : false,
+                            };
+                        } else if (ardData[0] === "Touch2") {
+                            console.log("Value for impact2 is", idAndVal[1], typeof idAndVal[1]);
+                            jsonData = {
+                                id: idAndVal[0],
+                                impact2: idAndVal[1] < 10 ? true : false,
                             };
                         } else {
                             jsonData["id"] = idAndVal[0];
