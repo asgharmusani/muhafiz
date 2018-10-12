@@ -223,11 +223,11 @@ var mychart = new Chartist.Line('.ct-chart');
 
   <script>
     var map;
+    let allMarkers = [];
     function initMap() {
 
         map = new google.maps.Map(document.getElementById('map'), {
         zoom: 17,
-        center: new google.maps.LatLng(24.915, 67.09)
       });
       
     }
@@ -264,17 +264,53 @@ var mychart = new Chartist.Line('.ct-chart');
                 document.getElementById("hb").innerHTML = receivedData["HeartBeat"];
             }
                
-            if (typeof receivedData["GPS"] != "undefined"){
-              var marker = new google.maps.Marker({
-                position: new google.maps.LatLng(receivedData["GPS"].lat, receivedData["GPS"].long),
-                map: map,
-                title: 'Muhafiz'
-              });
-              console.log(receivedData["GPS"] ); 
+            if (typeof receivedData["gps"] != "undefined"){
+              console.log({lat: receivedData.gps.lat , lng: receivedData.gps.long})
+              
+              if(typeof map.getCenter() == "undefined"){
+                var centerLat = receivedData.gps.lat;
+                var centerLng = receivedData.gps.long;
+                console.log("type of:", typeof Number(centerLat), centerLat );
+                map.setCenter({lat: Number(centerLat), lng: Number(centerLng)});
+              } 
+              updateGPSById(receivedData.id, receivedData.gps);
             }
                
           });
       })
+
+      function updateGPSById(id, gps){
+        
+        let isSoldierMarker = false;
+
+        let markerIcon = [
+          "", 
+          "http://maps.google.com/mapfiles/kml/paddle/1-lv.png",
+          "http://maps.google.com/mapfiles/kml/paddle/2-lv.png"
+          ];
+
+
+        for (var i=0; i<allMarkers.length; i++){
+          console.log("executing for")
+          if(allMarkers[i].id == id){
+            console.log("executing if with", allMarkers[i].id)
+            isSoldierMarker = true;
+            allMarkers[i].setPosition({lat: Number(gps.lat), lng: Number(gps.long)});
+            break;
+          }
+        }
+        if(!isSoldierMarker){
+          console.log("executing else with ");
+          var soldierMarker = new google.maps.Marker({
+            icon: markerIcon[id],
+            id: id,
+            map: map,
+            position: {lat: Number(gps.lat), lng: Number(gps.long)}
+          });
+          allMarkers.push(soldierMarker);
+        }
+        console.log(allMarkers);
+      }
   </script>
   </body>
 </html>
