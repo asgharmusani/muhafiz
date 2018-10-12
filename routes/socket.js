@@ -34,6 +34,12 @@ module.exports = function(io) {
                                     long: gps[1],
                                 },
                             };
+                        } else if (ardData[0] === "Impact") {
+                            console.log("Value for impact is", idAndVal[1], typeof idAndVal[1]);
+                            jsonData = {
+                                id: idAndVal[0],
+                                impact: idAndVal[1] < 10 ? true : false,
+                            };
                         } else {
                             jsonData["id"] = idAndVal[0];
                             jsonData[ardData[0]] = idAndVal[1];
