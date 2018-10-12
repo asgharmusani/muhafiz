@@ -43,24 +43,20 @@
         <li>
           <div class="user-thumb"> <img width="40" height="40" alt="User" src="img/demo/av1.jpg"> </div>
           <div class="article-post"> <span class="user-info">Soldier 1</span> 
-          <span class="small pl-5" style="color:green;">Online</span>
+          <span class="small pl-5" id = "soldier1" style="color:green;">Online</span>
           {{!-- <span class="small pl-5" style="color:red;">Offline</span> --}}
             <div class="px-5">
-              <span>1</span>
-              <span>2</span>
-              <span>3</span>
+              <span>1m</span>
             </div>
           </div>
         </li>
         <li>
           <div class="user-thumb"> <img width="40" height="40" alt="User" src="img/demo/av2.jpg"> </div>
           <div class="article-post"> <span class="user-info">Soldier 2</span>
-          <span class="small pl-5" style="color:green;">Online</span>
+          <span class="small pl-5" id = "soldier2" style="color:green;">Online</span>
           {{!-- <span class="small pl-5" style="color:red;">Offline</span> --}}
             <div class="px-5">
-              <span>1</span>
-              <span>2</span>
-              <span>3</span>
+              <span>1m</span>
             </div>
           </div>
         </li>
@@ -223,11 +219,11 @@ var mychart = new Chartist.Line('.ct-chart');
 
   <script>
     var map;
-    let allMarkers = [];
     function initMap() {
 
         map = new google.maps.Map(document.getElementById('map'), {
         zoom: 17,
+        center: new google.maps.LatLng(24.915, 67.09)
       });
       
     }
@@ -251,11 +247,11 @@ var mychart = new Chartist.Line('.ct-chart');
               mychart.update(data, { 
                 width : 600,
                 height: 450,
-                });
+              });
             }
-                //document.getElementById("acc_y").innerHTML = receivedData["ACC-Y"];
+              //document.getElementById("acc_y").innerHTML = receivedData["ACC-Y"];
             if (typeof receivedData["ACC-Z"] != "undefined"){}
-                //document.getElementById("acc_z").innerHTML = receivedData["ACC-Z"];
+              //document.getElementById("acc_z").innerHTML = receivedData["ACC-Z"];
             if (typeof receivedData["Alt"] != "undefined"){
               //document.getElementById("alt").innerHTML = receivedData["Alt"];
             }
@@ -264,53 +260,17 @@ var mychart = new Chartist.Line('.ct-chart');
                 document.getElementById("hb").innerHTML = receivedData["HeartBeat"];
             }
                
-            if (typeof receivedData["gps"] != "undefined"){
-              console.log({lat: receivedData.gps.lat , lng: receivedData.gps.long})
-              
-              if(typeof map.getCenter() == "undefined"){
-                var centerLat = receivedData.gps.lat;
-                var centerLng = receivedData.gps.long;
-                console.log("type of:", typeof Number(centerLat), centerLat );
-                map.setCenter({lat: Number(centerLat), lng: Number(centerLng)});
-              } 
-              updateGPSById(receivedData.id, receivedData.gps);
+            if (typeof receivedData["GPS"] != "undefined"){
+              var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(receivedData["GPS"].lat, receivedData["GPS"].long),
+                map: map,
+                title: 'Muhafiz'
+              });
+              console.log(receivedData["GPS"] ); 
             }
                
           });
       })
-
-      function updateGPSById(id, gps){
-        
-        let isSoldierMarker = false;
-
-        let markerIcon = [
-          "", 
-          "http://maps.google.com/mapfiles/kml/paddle/1-lv.png",
-          "http://maps.google.com/mapfiles/kml/paddle/2-lv.png"
-          ];
-
-
-        for (var i=0; i<allMarkers.length; i++){
-          console.log("executing for")
-          if(allMarkers[i].id == id){
-            console.log("executing if with", allMarkers[i].id)
-            isSoldierMarker = true;
-            allMarkers[i].setPosition({lat: Number(gps.lat), lng: Number(gps.long)});
-            break;
-          }
-        }
-        if(!isSoldierMarker){
-          console.log("executing else with ");
-          var soldierMarker = new google.maps.Marker({
-            icon: markerIcon[id],
-            id: id,
-            map: map,
-            position: {lat: Number(gps.lat), lng: Number(gps.long)}
-          });
-          allMarkers.push(soldierMarker);
-        }
-        console.log(allMarkers);
-      }
   </script>
   </body>
 </html>
